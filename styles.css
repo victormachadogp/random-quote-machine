@@ -5,3 +5,7 @@
   max-width: 600px;
   margin: 20px auto;
 }
+
+#quote-box.loading {
+  opacity: 0.3
+}

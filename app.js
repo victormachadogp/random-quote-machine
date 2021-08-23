@@ -1,10 +1,17 @@
+const quoteBoxElement = document.querySelector('#quote-box')
 const newQuoteButton = document.querySelector('#new-quote')
 newQuoteButton.addEventListener('click', handleNewQuoteClick)
 
 async function handleNewQuoteClick() {
+  toggleLoading()
   const quoteObject = await fetchRandomQuote()
   renderQuote(quoteObject)
   renderAuthor(quoteObject)
+  toggleLoading()
+}
+
+function toggleLoading() {
+  quoteBoxElement.classList.add('loading')
 }
 
 async function fetchRandomQuote() {
