@@ -1,11 +1,16 @@
 const newQuoteButton = document.querySelector('#new-quote')
-newQuoteButton.addEventListener('click', fetchRandomQuote)
+newQuoteButton.addEventListener('click', handleNewQuoteClick)
+
+async function handleNewQuoteClick() {
+  const quoteObject = await fetchRandomQuote()
+  renderQuote(quoteObject)
+  renderAuthor(quoteObject)
+}
 
 async function fetchRandomQuote() {
   const response = await fetch('https://api.quotable.io/random')
   const quoteObject = await response.json()
-  renderQuote(quoteObject)
-  renderAuthor(quoteObject)
+  return quoteObject
 }
 
 function renderQuote(quoteObject) {
