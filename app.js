@@ -1,31 +1,31 @@
-const quoteBoxElement = document.querySelector('#quote-box')
-const newQuoteButton = document.querySelector('#new-quote')
-newQuoteButton.addEventListener('click', handleNewQuoteClick)
+const quoteBoxElement = document.querySelector("#quote-box");
+const newQuoteButton = document.querySelector("#new-quote");
+newQuoteButton.addEventListener("click", handleNewQuoteClick);
 
 async function handleNewQuoteClick() {
-  toggleLoading()
-  const quoteObject = await fetchRandomQuote()
-  renderQuote(quoteObject)
-  renderAuthor(quoteObject)
-  toggleLoading()
+  toggleLoading();
+  const quoteObject = await fetchRandomQuote();
+  renderQuote(quoteObject);
+  renderAuthor(quoteObject);
+  toggleLoading(quoteObject);
 }
 
 function toggleLoading() {
-  quoteBoxElement.classList.add('loading')
+  quoteBoxElement.classList.add("loading");
 }
 
 async function fetchRandomQuote() {
-  const response = await fetch('https://api.quotable.io/random')
-  const quoteObject = await response.json()
-  return quoteObject
+  const response = await fetch("https://api.quotable.io/random");
+  const quoteObject = await response.json();
+  return quoteObject;
 }
 
 function renderQuote(quoteObject) {
-  const textElement = document.querySelector('#text')
-  textElement.textContent = quoteObject.content
+  const textElement = document.querySelector("#text");
+  textElement.textContent = quoteObject.content;
 }
 
 function renderAuthor(quoteObject) {
-  const textElement = document.querySelector('#author')
-  textElement.textContent = `- ${quoteObject.author}`
+  const textElement = document.querySelector("#author");
+  textElement.textContent = `- ${quoteObject.author}`;
 }
